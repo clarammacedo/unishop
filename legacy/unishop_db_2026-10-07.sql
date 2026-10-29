@@ -1,13 +1,14 @@
+-- LEGADO (07/10/2026): substituído pelo bd.md v0.2. Não restaurar. Ver legacy/README.md.
 --
 -- PostgreSQL database dump
 --
 
-\restrict PRaHwUMoFYadI5at4NOKuvj0jy8qCRz7FrrfL9OiB6SEKCzaRqWT4nOB6PWlqg5
+\restrict 3Tjf4MyhB5ICzdYjlLLGlAqzbQ6qzccIknvrSxTrZB6fCgbyp99pSqfOLibYEll
 
 -- Dumped from database version 18.6
 -- Dumped by pg_dump version 18.6
 
--- Started on 2026-10-07 22:04:55
+-- Started on 2026-10-07 22:08:19
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -257,143 +258,6 @@ ALTER TABLE public.usuario ALTER COLUMN id_usuario ADD GENERATED ALWAYS AS IDENT
 
 
 --
--- TOC entry 5031 (class 0 OID 16421)
--- Dependencies: 224
--- Data for Name: anuncio; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.anuncio (id_anuncio, nome, descricao, preco, quantidade, status, data_publicacao, visualizacoes, contatos, id_usuario, id_categoria) FROM stdin;
-\.
-
-
---
--- TOC entry 5029 (class 0 OID 16411)
--- Dependencies: 222
--- Data for Name: categoria; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.categoria (id_categoria, nome) FROM stdin;
-1	Livros
-2	Eletrônicos
-3	Roupas
-4	Materiais Acadêmicos
-\.
-
-
---
--- TOC entry 5033 (class 0 OID 16454)
--- Dependencies: 226
--- Data for Name: imagem_anuncio; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.imagem_anuncio (id_imagem, id_anuncio, url_imagem, ordem) FROM stdin;
-\.
-
-
---
--- TOC entry 5039 (class 0 OID 16511)
--- Dependencies: 232
--- Data for Name: log_admin; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.log_admin (id_log, id_admin, acao, entidade, id_entidade, data_acao) FROM stdin;
-\.
-
-
---
--- TOC entry 5037 (class 0 OID 16494)
--- Dependencies: 230
--- Data for Name: pagamento; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.pagamento (id_pagamento, id_pedido, id_transacao_gateway, forma_pagamento, status_pagamento, data_pagamento, valor) FROM stdin;
-\.
-
-
---
--- TOC entry 5035 (class 0 OID 16469)
--- Dependencies: 228
--- Data for Name: pedido; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.pedido (id_pedido, id_anuncio, id_comprador, forma_negociacao, status_pedido, data_pedido, valor_total) FROM stdin;
-\.
-
-
---
--- TOC entry 5027 (class 0 OID 16389)
--- Dependencies: 220
--- Data for Name: usuario; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.usuario (id_usuario, nome, email, senha_hash, whatsapp, curso, foto_perfil, verificacao, tipo_usuario, status_conta, data_cadastro, ultimo_acesso) FROM stdin;
-\.
-
-
---
--- TOC entry 5045 (class 0 OID 0)
--- Dependencies: 223
--- Name: anuncio_id_anuncio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.anuncio_id_anuncio_seq', 1, false);
-
-
---
--- TOC entry 5046 (class 0 OID 0)
--- Dependencies: 221
--- Name: categoria_id_categoria_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.categoria_id_categoria_seq', 5, true);
-
-
---
--- TOC entry 5047 (class 0 OID 0)
--- Dependencies: 225
--- Name: imagem_anuncio_id_imagem_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.imagem_anuncio_id_imagem_seq', 1, false);
-
-
---
--- TOC entry 5048 (class 0 OID 0)
--- Dependencies: 231
--- Name: log_admin_id_log_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.log_admin_id_log_seq', 1, false);
-
-
---
--- TOC entry 5049 (class 0 OID 0)
--- Dependencies: 229
--- Name: pagamento_id_pagamento_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.pagamento_id_pagamento_seq', 1, false);
-
-
---
--- TOC entry 5050 (class 0 OID 0)
--- Dependencies: 227
--- Name: pedido_id_pedido_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.pedido_id_pedido_seq', 1, false);
-
-
---
--- TOC entry 5051 (class 0 OID 0)
--- Dependencies: 219
--- Name: usuario_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.usuario_id_usuario_seq', 1, false);
-
-
---
 -- TOC entry 4861 (class 2606 OID 16442)
 -- Name: anuncio anuncio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
@@ -546,11 +410,11 @@ ALTER TABLE ONLY public.pedido
     ADD CONSTRAINT fk_pedido_comprador FOREIGN KEY (id_comprador) REFERENCES public.usuario(id_usuario);
 
 
--- Completed on 2026-10-07 22:04:56
+-- Completed on 2026-10-07 22:08:20
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict PRaHwUMoFYadI5at4NOKuvj0jy8qCRz7FrrfL9OiB6SEKCzaRqWT4nOB6PWlqg5
+\unrestrict 3Tjf4MyhB5ICzdYjlLLGlAqzbQ6qzccIknvrSxTrZB6fCgbyp99pSqfOLibYEll
 
