@@ -1,0 +1,186 @@
+// CÓPIA DE APOIO do backend/prisma/schema.prisma do repositório principal (Franmagno06/Unishop). Em caso de divergência, vale o do repositório principal.
+// Unishop · schema.prisma · espelha docs/BancoDeDados/bd.md (v0.2)
+//
+// Banco em português, código em inglês: @map/@@map fazem a ponte (bd.md §7).
+// Campos de estado são String (varchar) e os valores são garantidos por CHECK na
+// migração manual (bd.md §14); os tipos TypeScript dos valores ficam no backend.
+//
+// O que o Prisma não expressa fica SÓ na migração manual, para não duplicar no 0_init:
+//   - índice único sobre lower(usuario.email)  (uq_usuario_email_lower)
+//   - todos os CHECK (ck_*)
+//   - índices parciais (uq_pedido_aberto, uq_pagamento_ativo, uq_pagamento_transacao, ...)
+//   - demais índices ix_*
+//   - view anuncio_visivel e papéis do banco
+// Nenhuma FK declara onDelete (= NO ACTION): nada se apaga em cascata.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Alunos e administradores. tipo_usuario: 'aluno' | 'admin'. status_conta: 'ativa' | 'suspensa' | 'excluida'.
+model User {
+  id                Int       @id(map: "usuario_pkey") @default(autoincrement()) @map("id_usuario")
+  name              String    @map("nome") @db.VarChar(150)
+  email             String    @db.VarChar(150)
+  passwordHash      String?   @map("senha_hash") @db.VarChar(255)
+  googleSub         String?   @unique(map: "usuario_google_sub_key") @map("google_sub") @db.VarChar(64)
+  whatsapp          String?   @db.VarChar(20)
+  course            String?   @map("curso") @db.VarChar(100)
+  photoUrl          String?   @map("foto_perfil") @db.VarChar(255)
+  verified          Boolean   @default(false) @map("verificacao")
+  role              String    @default("aluno") @map("tipo_usuario") @db.VarChar(20)
+  accountStatus     String    @default("ativa") @map("status_conta") @db.VarChar(20)
+  termsAcceptedAt   DateTime? @map("data_aceite_termos") @db.Timestamptz(6)
+  loginAttempts     Int       @default(0) @map("tentativas_login")
+  lockedUntil       DateTime? @map("bloqueado_ate") @db.Timestamptz(6)
+  passwordChangedAt DateTime? @map("senha_alterada_em") @db.Timestamptz(6)
+  createdAt         DateTime  @default(now()) @map("data_cadastro") @db.Timestamptz(6)
+  lastSeen          DateTime? @map("ultimo_acesso") @db.Timestamptz(6)
+
+  listings  Listing[]
+  purchases Order[]     @relation("OrderBuyer")
+  sales     Order[]     @relation("OrderSeller")
+  auditLogs AuditLog[]
+  tokens    UserToken[]
+
+  @@map("usuario")
+}
+
+/// Seis categorias fixas, criadas pelo seed (RN-CAT-01).
+model Category {
+  id   Int    @id(map: "categoria_pkey") @default(autoincrement()) @map("id_categoria")
+  name String @unique(map: "categoria_nome_key") @map("nome") @db.VarChar(100)
+
+  listings Listing[]
+
+  @@map("categoria")
+}
+
+/// Produto à venda. status: 'ativo' | 'pausado' | 'vendido'. Exclusão lógica por excluido_em.
+model Listing {
+  id          Int       @id(map: "anuncio_pkey") @default(autoincrement()) @map("id_anuncio")
+  name        String    @map("nome") @db.VarChar(150)
+  description String    @map("descricao")
+  price       Decimal   @map("preco") @db.Decimal(10, 2)
+  quantity    Int       @default(1) @map("quantidade")
+  whatsapp    String    @db.VarChar(20)
+  status      String    @default("ativo") @db.VarChar(20)
+  publishedAt DateTime  @default(now()) @map("data_publicacao") @db.Timestamptz(6)
+  views       Int       @default(0) @map("visualizacoes")
+  contacts    Int       @default(0) @map("contatos")
+  deletedAt   DateTime? @map("excluido_em") @db.Timestamptz(6)
+  soldAt      DateTime? @map("vendido_em") @db.Timestamptz(6)
+  userId      Int       @map("id_usuario")
+  categoryId  Int       @map("id_categoria")
+
+  user     User           @relation(fields: [userId], references: [id], map: "fk_anuncio_usuario", onDelete: NoAction, onUpdate: NoAction)
+  category Category       @relation(fields: [categoryId], references: [id], map: "fk_anuncio_categoria", onDelete: NoAction, onUpdate: NoAction)
+  images   ListingImage[]
+  orders   Order[]
+
+  @@map("anuncio")
+}
+
+/// Fotos do anúncio (1 a 5). O arquivo fica na Cloudinary; ordem 1 = foto principal.
+model ListingImage {
+  id        Int    @id(map: "imagem_anuncio_pkey") @default(autoincrement()) @map("id_imagem")
+  listingId Int    @map("id_anuncio")
+  url       String @map("url_imagem") @db.VarChar(255)
+  publicId  String @map("public_id") @db.VarChar(255)
+  position  Int    @map("ordem")
+
+  listing Listing @relation(fields: [listingId], references: [id], map: "fk_imagem_anuncio", onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([listingId, position], map: "uq_imagem_ordem")
+  @@map("imagem_anuncio")
+}
+
+/// Compra ou interesse por um anúncio; congela vendedor, produto, imagem, quantidade, preço e taxa.
+/// forma_negociacao: 'pagamento_site' | 'whatsapp'.
+/// status_pedido: 'pendente' | 'pago' | 'retirada_combinada' | 'concluido' | 'em_negociacao' | 'cancelado'.
+/// O padrão do banco é 'em_negociacao' (WhatsApp); no site o backend informa 'pendente'.
+model Order {
+  id              Int       @id(map: "pedido_pkey") @default(autoincrement()) @map("id_pedido")
+  listingId       Int       @map("id_anuncio")
+  buyerId         Int       @map("id_comprador")
+  sellerId        Int       @map("id_vendedor")
+  negotiationType String    @map("forma_negociacao") @db.VarChar(20)
+  status          String    @default("em_negociacao") @map("status_pedido") @db.VarChar(20)
+  productName     String    @map("nome_produto") @db.VarChar(150)
+  imageUrl        String?   @map("imagem_url") @db.VarChar(255)
+  quantity        Int       @map("quantidade")
+  unitPrice       Decimal   @map("preco_unitario") @db.Decimal(10, 2)
+  serviceFee      Decimal   @default(0) @map("taxa_servico") @db.Decimal(10, 2)
+  totalAmount     Decimal   @map("valor_total") @db.Decimal(10, 2)
+  createdAt       DateTime  @default(now()) @map("data_pedido") @db.Timestamptz(6)
+  completedAt     DateTime? @map("concluido_em") @db.Timestamptz(6)
+  updatedAt       DateTime  @default(now()) @map("atualizado_em") @db.Timestamptz(6)
+
+  listing  Listing   @relation(fields: [listingId], references: [id], map: "fk_pedido_anuncio", onDelete: NoAction, onUpdate: NoAction)
+  buyer    User      @relation("OrderBuyer", fields: [buyerId], references: [id], map: "fk_pedido_comprador", onDelete: NoAction, onUpdate: NoAction)
+  seller   User      @relation("OrderSeller", fields: [sellerId], references: [id], map: "fk_pedido_vendedor", onDelete: NoAction, onUpdate: NoAction)
+  payments Payment[]
+
+  @@map("pedido")
+}
+
+/// Uma linha por tentativa de cobrança. Nunca guarda dado de cartão (RN-PAG-02).
+/// forma_pagamento: 'pix' | 'cartao'.
+/// status_pagamento: 'pendente' | 'aprovado' | 'recusado' | 'expirado' | 'estorno_pendente' | 'estornado'.
+model Payment {
+  id             Int       @id(map: "pagamento_pkey") @default(autoincrement()) @map("id_pagamento")
+  orderId        Int       @map("id_pedido")
+  gatewayTxId    String?   @map("id_transacao_gateway") @db.VarChar(255)
+  method         String    @map("forma_pagamento") @db.VarChar(20)
+  status         String    @map("status_pagamento") @db.VarChar(20)
+  paidAt         DateTime? @map("data_pagamento") @db.Timestamptz(6)
+  amount         Decimal?  @map("valor") @db.Decimal(10, 2)
+  expiresAt      DateTime? @map("data_expiracao") @db.Timestamptz(6)
+  idempotencyKey String?   @unique(map: "uq_pagamento_idempotencia") @map("chave_idempotencia") @db.VarChar(100)
+  refundAttempts Int       @default(0) @map("tentativas_estorno")
+  lastError      String?   @map("ultimo_erro")
+  createdAt      DateTime  @default(now()) @map("data_criacao") @db.Timestamptz(6)
+
+  order Order @relation(fields: [orderId], references: [id], map: "fk_pagamento_pedido", onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("pagamento")
+}
+
+/// Auditoria do admin; só inserção. id_entidade não tem FK de propósito (o log sobrevive ao alvo).
+/// entidade: 'usuario' | 'anuncio'.
+model AuditLog {
+  id        Int      @id(map: "log_admin_pkey") @default(autoincrement()) @map("id_log")
+  adminId   Int      @map("id_admin")
+  action    String   @map("acao") @db.VarChar(50)
+  entity    String   @map("entidade") @db.VarChar(20)
+  entityId  Int      @map("id_entidade")
+  details   Json?    @map("detalhes") @db.JsonB
+  createdAt DateTime @default(now()) @map("data_acao") @db.Timestamptz(6)
+
+  admin User @relation(fields: [adminId], references: [id], map: "fk_log_admin_usuario", onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("log_admin")
+}
+
+/// Links de uso único; só o hash é guardado.
+/// tipo: 'confirmacao_email' | 'redefinicao_senha' | 'troca_email'.
+model UserToken {
+  id        Int       @id(map: "token_usuario_pkey") @default(autoincrement()) @map("id_token")
+  userId    Int       @map("id_usuario")
+  type      String    @map("tipo") @db.VarChar(30)
+  tokenHash String    @unique(map: "uq_token_hash") @map("token_hash") @db.VarChar(255)
+  newEmail  String?   @map("novo_email") @db.VarChar(150)
+  expiresAt DateTime  @map("expira_em") @db.Timestamptz(6)
+  usedAt    DateTime? @map("usado_em") @db.Timestamptz(6)
+  createdAt DateTime  @default(now()) @map("criado_em") @db.Timestamptz(6)
+
+  user User @relation(fields: [userId], references: [id], map: "fk_token_usuario", onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("token_usuario")
+}

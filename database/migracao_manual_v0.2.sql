@@ -8,6 +8,33 @@
 BEGIN;
 
 -- ------------------------------------------------------------
+-- 0) CHAVES: SERIAL (gerado pelo Prisma) -> GENERATED ALWAYS AS IDENTITY
+--    Roda sobre banco recém-criado pelo 0_init (tabelas vazias): o identity começa em 1.
+-- ------------------------------------------------------------
+DO $$
+DECLARE
+  t record;
+BEGIN
+  FOR t IN
+    SELECT * FROM (VALUES
+      ('usuario',        'id_usuario'),
+      ('categoria',      'id_categoria'),
+      ('anuncio',        'id_anuncio'),
+      ('imagem_anuncio', 'id_imagem'),
+      ('pedido',         'id_pedido'),
+      ('pagamento',      'id_pagamento'),
+      ('log_admin',      'id_log'),
+      ('token_usuario',  'id_token')
+    ) AS v(tabela, coluna)
+  LOOP
+    EXECUTE format('ALTER TABLE public.%I ALTER COLUMN %I DROP DEFAULT', t.tabela, t.coluna);
+    EXECUTE format('DROP SEQUENCE IF EXISTS public.%I', t.tabela || '_' || t.coluna || '_seq');
+    EXECUTE format('ALTER TABLE public.%I ALTER COLUMN %I ADD GENERATED ALWAYS AS IDENTITY',
+                   t.tabela, t.coluna);
+  END LOOP;
+END $$;
+
+-- ------------------------------------------------------------
 -- 1) USUARIO
 -- ------------------------------------------------------------
 CREATE UNIQUE INDEX uq_usuario_email_lower ON public.usuario (lower(email));  -- RN-ACE-03
