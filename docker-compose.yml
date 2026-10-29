@@ -1,0 +1,15 @@
+# docker-compose.yml: só o banco (PostgreSQL 18), para testar 0_init + migração manual. Cópia do repositório principal.
+services:
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: unishop_dev
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - unishop_dev_data:/var/lib/postgresql   # PostgreSQL 18: o volume vai em /var/lib/postgresql
+
+volumes:
+  unishop_dev_data:
