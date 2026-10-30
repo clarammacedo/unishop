@@ -1,0 +1,307 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="mer-unishop-v02" name="MER v0.2">
+    <mxGraphModel dx="89300" dy="72300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ent_usuario" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="USUARIO" vertex="1">
+          <mxGeometry height="404" width="560" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_0" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fontStyle=1;fillColor=#ffffff;strokeColor=#d6d6d6;" value="PK  id_usuario  ·  integer identity  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_1" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     nome  ·  varchar(150)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_2" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="UK  email  ·  varchar(150)  ·  NN, único em lower(email)" vertex="1">
+          <mxGeometry height="22" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_3" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     senha_hash  ·  varchar(255)  ·  NULL (conta Google)" vertex="1">
+          <mxGeometry height="22" width="560" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_4" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="UK  google_sub  ·  varchar(64)  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_5" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     whatsapp  ·  varchar(20)  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_6" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     curso  ·  varchar(100)  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_7" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     foto_perfil  ·  varchar(255)  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_8" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     verificacao  ·  boolean  ·  NN, padrão false" vertex="1">
+          <mxGeometry height="22" width="560" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_9" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     tipo_usuario  ·  varchar(20)  ·  NN, aluno | admin" vertex="1">
+          <mxGeometry height="22" width="560" y="228" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_10" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     status_conta  ·  varchar(20)  ·  NN, ativa | suspensa | excluida" vertex="1">
+          <mxGeometry height="22" width="560" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_11" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     data_aceite_termos  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_12" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     tentativas_login  ·  integer  ·  NN, padrão 0" vertex="1">
+          <mxGeometry height="22" width="560" y="294" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_13" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     bloqueado_ate  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_14" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     senha_alterada_em  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="338" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_15" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     data_cadastro  ·  timestamptz  ·  NN, padrão now()" vertex="1">
+          <mxGeometry height="22" width="560" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_usuario_16" parent="ent_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     ultimo_acesso  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="382" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_categoria" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="CATEGORIA" vertex="1">
+          <mxGeometry height="74" width="560" x="790" y="-650" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_categoria_0" parent="ent_categoria" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fontStyle=1;fillColor=#ffffff;strokeColor=#d6d6d6;" value="PK  id_categoria  ·  integer identity  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_categoria_1" parent="ent_categoria" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="UK  nome  ·  varchar(100)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="ANUNCIO" vertex="1">
+          <mxGeometry height="338" width="560" x="790" y="-455" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_0" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fontStyle=1;fillColor=#ffffff;strokeColor=#d6d6d6;" value="PK  id_anuncio  ·  integer identity  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_1" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     nome  ·  varchar(150)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_2" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     descricao  ·  text  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_3" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     preco  ·  numeric(10,2)  ·  NN, 0,01 a 99.999,99" vertex="1">
+          <mxGeometry height="22" width="560" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_4" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     quantidade  ·  integer  ·  NN, padrão 1, 0 a 999" vertex="1">
+          <mxGeometry height="22" width="560" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_5" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     whatsapp  ·  varchar(20)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_6" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     status  ·  varchar(20)  ·  NN, ativo | pausado | vendido" vertex="1">
+          <mxGeometry height="22" width="560" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_7" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     data_publicacao  ·  timestamptz  ·  NN, padrão now()" vertex="1">
+          <mxGeometry height="22" width="560" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_8" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     visualizacoes  ·  integer  ·  NN, padrão 0" vertex="1">
+          <mxGeometry height="22" width="560" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_9" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     contatos  ·  integer  ·  NN, padrão 0" vertex="1">
+          <mxGeometry height="22" width="560" y="228" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_10" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     excluido_em  ·  timestamptz  ·  NULL (exclusão lógica)" vertex="1">
+          <mxGeometry height="22" width="560" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_11" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     vendido_em  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_12" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_usuario  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="294" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_anuncio_13" parent="ent_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_categoria  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_imagem_anuncio" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="IMAGEM_ANUNCIO" vertex="1">
+          <mxGeometry height="140" width="560" x="1840" y="-356" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_imagem_anuncio_0" parent="ent_imagem_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fontStyle=1;fillColor=#ffffff;strokeColor=#d6d6d6;" value="PK  id_imagem  ·  integer identity  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_imagem_anuncio_1" parent="ent_imagem_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_anuncio  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_imagem_anuncio_2" parent="ent_imagem_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     url_imagem  ·  varchar(255)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_imagem_anuncio_3" parent="ent_imagem_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     public_id  ·  varchar(255)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_imagem_anuncio_4" parent="ent_imagem_anuncio" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     ordem  ·  integer  ·  NN, 1 a 5, único por anúncio" vertex="1">
+          <mxGeometry height="22" width="560" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="PEDIDO" vertex="1">
+          <mxGeometry height="360" width="560" x="40" y="-466" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_0" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fontStyle=1;fillColor=#ffffff;strokeColor=#d6d6d6;" value="PK  id_pedido  ·  integer identity  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_1" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_anuncio  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_2" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_comprador  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_3" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_vendedor  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_4" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     forma_negociacao  ·  varchar(20)  ·  NN, pagamento_site | whatsapp" vertex="1">
+          <mxGeometry height="22" width="560" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_5" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     status_pedido  ·  varchar(20)  ·  NN, padrão em_negociacao" vertex="1">
+          <mxGeometry height="22" width="560" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_6" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     nome_produto  ·  varchar(150)  ·  NN (congelado)" vertex="1">
+          <mxGeometry height="22" width="560" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_7" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     imagem_url  ·  varchar(255)  ·  NULL (congelado)" vertex="1">
+          <mxGeometry height="22" width="560" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_8" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     quantidade  ·  integer  ·  NN, &gt; 0" vertex="1">
+          <mxGeometry height="22" width="560" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_9" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     preco_unitario  ·  numeric(10,2)  ·  NN (congelado)" vertex="1">
+          <mxGeometry height="22" width="560" y="228" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_10" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     taxa_servico  ·  numeric(10,2)  ·  NN, padrão 0" vertex="1">
+          <mxGeometry height="22" width="560" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_11" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     valor_total  ·  numeric(10,2)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_12" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     data_pedido  ·  timestamptz  ·  NN, padrão now()" vertex="1">
+          <mxGeometry height="22" width="560" y="294" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_13" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     concluido_em  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pedido_14" parent="ent_pedido" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     atualizado_em  ·  timestamptz  ·  NN, padrão now()" vertex="1">
+          <mxGeometry height="22" width="560" y="338" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="PAGAMENTO" vertex="1">
+          <mxGeometry height="294" width="560" x="-720" y="-433" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_0" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fontStyle=1;fillColor=#ffffff;strokeColor=#d6d6d6;" value="PK  id_pagamento  ·  integer identity  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_1" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_pedido  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_2" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="UK  id_transacao_gateway  ·  varchar(255)  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_3" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     forma_pagamento  ·  varchar(20)  ·  NN, pix | cartao" vertex="1">
+          <mxGeometry height="22" width="560" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_4" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     status_pagamento  ·  varchar(20)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_5" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     data_pagamento  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_6" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     valor  ·  numeric(10,2)  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_7" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     data_expiracao  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_8" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="UK  chave_idempotencia  ·  varchar(100)  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_9" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     tentativas_estorno  ·  integer  ·  NN, padrão 0" vertex="1">
+          <mxGeometry height="22" width="560" y="228" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_10" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     ultimo_erro  ·  text  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_pagamento_11" parent="ent_pagamento" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     data_criacao  ·  timestamptz  ·  NN, padrão now()" vertex="1">
+          <mxGeometry height="22" width="560" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_log_admin" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="LOG_ADMIN" vertex="1">
+          <mxGeometry height="184" width="560" x="-680" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_log_admin_0" parent="ent_log_admin" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fontStyle=1;fillColor=#ffffff;strokeColor=#d6d6d6;" value="PK  id_log  ·  integer identity  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_log_admin_1" parent="ent_log_admin" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_admin  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_log_admin_2" parent="ent_log_admin" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     acao  ·  varchar(50)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_log_admin_3" parent="ent_log_admin" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     entidade  ·  varchar(20)  ·  NN, usuario | anuncio" vertex="1">
+          <mxGeometry height="22" width="560" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_log_admin_4" parent="ent_log_admin" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     id_entidade  ·  integer  ·  NN (sem FK)" vertex="1">
+          <mxGeometry height="22" width="560" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_log_admin_5" parent="ent_log_admin" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     detalhes  ·  jsonb  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_log_admin_6" parent="ent_log_admin" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     data_acao  ·  timestamptz  ·  NN, padrão now()" vertex="1">
+          <mxGeometry height="22" width="560" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario" parent="1" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="TOKEN_USUARIO" vertex="1">
+          <mxGeometry height="206" width="560" x="40" y="597" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario_0" parent="ent_token_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fontStyle=1;fillColor=#ffffff;strokeColor=#d6d6d6;" value="PK  id_token  ·  integer identity  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario_1" parent="ent_token_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="FK  id_usuario  ·  integer  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario_2" parent="ent_token_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     tipo  ·  varchar(30)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="74" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario_3" parent="ent_token_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="UK  token_hash  ·  varchar(255)  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario_4" parent="ent_token_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     novo_email  ·  varchar(150)  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario_5" parent="ent_token_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     expira_em  ·  timestamptz  ·  NN" vertex="1">
+          <mxGeometry height="22" width="560" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario_6" parent="ent_token_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     usado_em  ·  timestamptz  ·  NULL" vertex="1">
+          <mxGeometry height="22" width="560" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="ent_token_usuario_7" parent="ent_token_usuario" style="text;align=left;verticalAlign=middle;spacingLeft=8;overflow=hidden;whiteSpace=nowrap;fontFamily=Courier New;fontSize=11;fillColor=#ffffff;strokeColor=#d6d6d6;" value="     criado_em  ·  timestamptz  ·  NN, padrão now()" vertex="1">
+          <mxGeometry height="22" width="560" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_0" edge="1" parent="1" source="ent_usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;endFill=0;startFill=0;" target="ent_anuncio" value="publica">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_1" edge="1" parent="1" source="ent_categoria" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;endFill=0;startFill=0;" target="ent_anuncio" value="possui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_2" edge="1" parent="1" source="ent_anuncio" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERoneToMany;startArrow=ERmandOne;endFill=0;startFill=0;" target="ent_imagem_anuncio" value="possui (1 a 5)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_3" edge="1" parent="1" source="ent_anuncio" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;endFill=0;startFill=0;" target="ent_pedido" value="gera">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_4" edge="1" parent="1" source="ent_pedido" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;endFill=0;startFill=0;" target="ent_pagamento" value="tem (tentativas)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_5" edge="1" parent="1" source="ent_usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;endFill=0;startFill=0;" target="ent_pedido" value="realiza (comprador)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_7" edge="1" parent="1" source="ent_usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;endFill=0;startFill=0;" target="ent_log_admin" value="registra (admin)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel_8" edge="1" parent="1" source="ent_usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERzeroToMany;startArrow=ERmandOne;endFill=0;startFill=0;" target="ent_token_usuario" value="possui">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="j2bUoKsJrSgA8Pwpzeqz-3" edge="1" parent="1" source="ent_usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=ERmany;startArrow=ERmandOne;endFill=0;startFill=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" target="ent_pedido" value="">
+          <mxGeometry relative="1" x="-0.5" as="geometry">
+            <mxPoint x="360" y="86" as="sourcePoint" />
+            <mxPoint x="360" y="-60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="j2bUoKsJrSgA8Pwpzeqz-5" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;span&gt;vende &lt;/span&gt;&lt;span&gt;(vendedor)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="20" width="100" x="420" y="-40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
